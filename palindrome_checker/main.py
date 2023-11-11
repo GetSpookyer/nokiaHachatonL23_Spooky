@@ -1,4 +1,4 @@
-#checking for palindromes
+#checking for palindromes  
 def palCheck(stringArray):
     length = len(stringArray)
     if length%2 == 0:
