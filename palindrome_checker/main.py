@@ -1,4 +1,23 @@
-
+#checking for palindromes
+def palCheck(stringArray):
+    length = len(stringArray)
+    if length%2 == 0:
+        steps = int((length/2))
+    else:
+        steps = int((length/2)+0.5)
+    charsInString = []
+    isPalindrome = True
+    for y in range(steps):
+        if stringArray[x][y] == stringArray[x][-(y+1)]:
+            if stringArray[x][y] not in charsInString:
+                charsInString.append(stringArray[x][y])
+        else:
+            isPalindrome = False
+            break
+    if isPalindrome == True:
+        return("Yes, "+str(len(charsInString)))
+    else:
+        return("No, -1")
 
 #Initial data input
 file = open('input.txt', "r")
@@ -12,39 +31,11 @@ for x in range(len(stringsFromFile)):
         stringsFromFile[x] = stringsFromFile[x].replace(whatToDisappear[y],"")
     stringsFromFile[x] = list(stringsFromFile[x].lower())
 
-#testing for palindromes and creating the output array
+#creating the output array
 printoutData = []
 for x in range(len(stringsFromFile)):
-    length = len(stringsFromFile[x])
-    if length%2 == 0:
-        charsInString = []
-        logical = True
-        for y in range(int(length/2)):
-            if stringsFromFile[x][y] == stringsFromFile[x][length-1-y]:
-                if stringsFromFile[x][y] not in charsInString:
-                    charsInString.append(stringsFromFile[x][y])
-            else:
-                logical = False
-                break
-        if logical == True:
-            printoutData.append("Yes, "+str(len(charsInString)))
-        else:
-            printoutData.append("No, -1")
-    else:
-        steps = int((length/2)+0.5)
-        charsInString = []
-        logical = True
-        for y in range(steps):
-            if stringsFromFile[x][y] == stringsFromFile[x][length-1-y]:
-                if stringsFromFile[x][y] not in charsInString:
-                    charsInString.append(stringsFromFile[x][y])
-            else:
-                logical = False
-                break
-        if logical == True:
-            printoutData.append("Yes, "+str(len(charsInString)))
-        else:
-            printoutData.append("No, -1")
+    printoutData.append(palCheck(stringsFromFile))
+        
 
 #printing the output array
 for x in printoutData:
